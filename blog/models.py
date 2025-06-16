@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 # Create your models here.
 class Blog(models.Model):
@@ -10,6 +11,7 @@ class Blog(models.Model):
 	like_count = models.IntegerField(default=0) 
 	category = models.CharField(max_length=50, null=True, blank=True)
 	published = models.IntegerField(default=1)
+	slug = models.SlugField(unique=True, blank=True)
 	user= models.ForeignKey("users.CustomUser", on_delete=models.CASCADE)
 
 
@@ -19,4 +21,17 @@ class Blog(models.Model):
 	def __str__(self):
 		return (self.title)
 
+	def save(self, *args, **kwargs):
+		self.slug = slugify(self.title)
+		super().save(*args, **kwargs)
 
+
+
+
+class Comment(models.Model):
+	comment = models.TextField()
+	blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+	user= models.ForeignKey("users.CustomUser", on_delete=models.CASCADE)
+
+	def __str__(self):
+		return (self.comment[0:10]+".... by "+self.user.name)
