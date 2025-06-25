@@ -7,4 +7,4 @@ from .models import Blog
 def blogs(request):
 	blogs = Blog.objects.all().order_by('created_time')
 	context = {"blogs":blogs}
-	return render(request, "blogs.html", context)
+	return render(request, "blog/blogs.html", context)
