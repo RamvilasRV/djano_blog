@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from django.contrib.auth.models import UserManager, AbstractBaseUser, PermissionsMixin
 
 # Create your models here.
@@ -33,6 +34,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 	"""A custom model for the User"""
 	email = models.EmailField(blank=True, default="", unique=True)
 	name = models.CharField(max_length=255, blank=True, default="")
+	slug = models.SlugField(unique=True, blank=True)
 
 	is_active=models.BooleanField(default=True)
 	is_superuser = models.BooleanField(default=False)
@@ -57,6 +59,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 	def get_short_name(self):
 		return self.name or self.email.split("@")[0]
+
+	def save(self, *args, **kwargs):
+		if not self.slug:
+			self.slug = slugify(self.name)
+		super().save(*args, **kwargs)
+
 
 
 

@@ -1,15 +1,14 @@
-<!-- Display all the blogs from all users-->
+<!-- This page will show the blogs of a particular user -->
 
-{%  extends 'base.html' %}
-
+{% extends 'base.html' %}
 
 {% block content %}
-{% for blog in blogs %}
+	{% for blog in blogs %}
 	<h2>{{blog.title}} [{{blog.id}}]</h2>
 	<!--Maybe also show a image-->
-	<p>By: {{blog.user.name}} ({{blog.user.slug}})</p>
+	<p>By: {{blog.user.name}}</p>
 	<p>Category: #{{blog.category}}</p>
 	<p>Posted On: {{blog.created_time}}</p>
 	<p>Likes: {{blog.like_count}}</p>
-{% endfor %}
+	{% endfor %}
 {% endblock %}

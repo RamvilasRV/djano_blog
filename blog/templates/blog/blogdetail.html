@@ -1,0 +1,9 @@
+<!--This will show a single blog that is being requested-->
+
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>{{blog.title}}</h1>
+	<p>{{blog.content}}</p>
+	<small>{{blog.user.name}} - {{blog.updated_time}}</small>
+{% endblock %}

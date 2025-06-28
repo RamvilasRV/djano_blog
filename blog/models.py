@@ -8,11 +8,12 @@ class Blog(models.Model):
 	# image = models.ImageField() ## need to define a MEDIA_ROOT
 	created_time = models.DateTimeField(auto_now_add=True)
 	updated_time = models.DateTimeField(auto_now=True)
-	like_count = models.IntegerField(default=0) 
+	# like_count = models.IntegerField(default=0) 
 	category = models.CharField(max_length=50, null=True, blank=True)
 	published = models.IntegerField(default=1)
 	slug = models.SlugField(unique=True, blank=True)
 	user= models.ForeignKey("users.CustomUser", on_delete=models.CASCADE)
+	# count_of_comments -> will have to calculate on the go.
 
 
 	### VALIDATION ###
@@ -28,10 +29,10 @@ class Blog(models.Model):
 
 
 
-class Comment(models.Model):
-	comment = models.TextField()
-	blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
-	user= models.ForeignKey("users.CustomUser", on_delete=models.CASCADE)
+# class Comment(models.Model):
+# 	comment = models.TextField()
+# 	blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+# 	user= models.ForeignKey("users.CustomUser", on_delete=models.CASCADE)
 
-	def __str__(self):
-		return (self.comment[0:10]+".... by "+self.user.name)
+# 	def __str__(self):
+# 		return (self.comment[0:10]+".... by "+self.user.name)
