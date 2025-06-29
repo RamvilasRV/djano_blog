@@ -1,0 +1,18 @@
+TODO
+
+> need to create form for being able to add a new blog. (User createview and form class)
+> Login page
+> logout functionality
+
+
+> pagination
+
+
+View list
+[.] All the blogs
+[.] A single blog
+[.] Blogs of a particular user
+
+-- make the list views blogs clickable
+
+-- Currently all the blogs are editable regardless of the user loged in
