@@ -108,4 +108,3 @@ class UpdateBlogView(LoginRequiredMixin, UpdateView):
     template_name = "blog/update_blog.html"
     fields = ["title", "content"]
     success_url = reverse_lazy('bloglist')
-
